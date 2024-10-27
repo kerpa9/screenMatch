@@ -9,6 +9,8 @@ public class Title {
     private int totalEvaluations;
     private int durationInMinutes;
 
+    public Title(){}
+
     // GETTERS
     public String getName() {
         return name;
@@ -55,8 +57,25 @@ public class Title {
         this.totalEvaluations = totalEvaluations;
     }
 
-    public void setDurationsInMinuts(int durationInMinutes){
-        this.durationInMinutes= durationInMinutes;
+    public void setDurationsInMinuts(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
+    }
+
+    // Methods
+
+    public void showTechnicalSheet() {
+        System.out.println("Name the movie: " + name);
+        System.out.println("Release date:  " + releaseDate);
+
+    }
+
+    public void evaluate(double note) {
+        sumEvaluations += note;
+        totalEvaluations++;
+    }
+
+    public double calMediaEvaluate() {
+        return sumEvaluations / totalEvaluations;
     }
 
 }
