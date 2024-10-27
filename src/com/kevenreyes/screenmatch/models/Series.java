@@ -6,6 +6,12 @@ public class Series extends Title {
     private int episodesSeason;
     private int minutesEpisodes;
 
+    public Series(String name, int releaseDate, boolean includedInPlan,
+    int durationInMinutes
+    ){
+     super(name, releaseDate, includedInPlan, durationInMinutes);
+    }
+
     // Getters
     public int getSeason() {
         return season;

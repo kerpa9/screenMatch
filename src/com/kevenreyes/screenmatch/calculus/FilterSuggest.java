@@ -1,7 +1,7 @@
 package com.kevenreyes.screenmatch.calculus;
 
 public class FilterSuggest {
-    private String recomendation;
+    // private String recomendation;
 
     public void filter(IClasification clasification){
         if(clasification.getClasification()>=4){

@@ -5,6 +5,12 @@ import com.kevenreyes.screenmatch.calculus.IClasification;
 public class Movie extends Title implements IClasification {
     private String director;
 
+    public Movie(String name, int releaseDate, boolean includedInPlan, 
+    int durationInMinutes){
+        super(name, releaseDate, includedInPlan, durationInMinutes);
+
+    }
+
     // Getter
     public String getDirector() {
         return director;

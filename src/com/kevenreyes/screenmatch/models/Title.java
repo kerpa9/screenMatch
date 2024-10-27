@@ -9,7 +9,14 @@ public class Title {
     private int totalEvaluations;
     private int durationInMinutes;
 
-    public Title(){}
+    public Title(String name, int releaseDate, boolean includedInPlan,
+            int durationInMinutes) {
+
+                this.name=name;
+                this.releaseDate=releaseDate;
+                this.includedInPlan=includedInPlan;
+                this.durationInMinutes=durationInMinutes;
+    }
 
     // GETTERS
     public String getName() {
