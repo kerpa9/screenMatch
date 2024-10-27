@@ -21,4 +21,9 @@ public class Movie extends Title implements IClasification {
         return (int) calMediaEvaluate() / 2;
     }
 
+    @Override
+    public String toString(){
+        return "Movie: "+this.getName()+"( "+getReleaseDate()+" )";
+    }
+
 }
