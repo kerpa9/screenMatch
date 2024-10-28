@@ -1,6 +1,6 @@
 package com.kevenreyes.screenmatch.models;
 
-public class Title {
+public class Title implements Comparable<Title> {
 
     private String name;
     private int releaseDate;
@@ -83,6 +83,12 @@ public class Title {
 
     public double calMediaEvaluate() {
         return sumEvaluations / totalEvaluations;
+    }
+
+    @Override
+    public int compareTo(Title otherTitle) {
+        return this.getName().compareTo(otherTitle.getName());
+  
     }
 
 }

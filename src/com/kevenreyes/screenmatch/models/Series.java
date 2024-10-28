@@ -7,9 +7,8 @@ public class Series extends Title {
     private int minutesEpisodes;
 
     public Series(String name, int releaseDate, boolean includedInPlan,
-    int durationInMinutes
-    ){
-     super(name, releaseDate, includedInPlan, durationInMinutes);
+            int durationInMinutes) {
+        super(name, releaseDate, includedInPlan, durationInMinutes);
     }
 
     // Getters
@@ -50,6 +49,11 @@ public class Series extends Title {
     @Override
     public int getDurationsInMinuts() {
         return season * episodesSeason * minutesEpisodes;
+    }
+
+    @Override
+    public String toString() {
+        return "Serie: " + this.getName() + "(" + this.getReleaseDate() + ")";
     }
 
 }
