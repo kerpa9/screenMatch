@@ -2,6 +2,8 @@ package com.kevenreyes.screenmatch.principal;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import com.kevenreyes.screenmatch.models.Movie;
 import com.kevenreyes.screenmatch.models.Series;
@@ -18,7 +20,7 @@ public class PrincipalList {
         movieRings.evaluate(10);
         Series lost = new Series("Lost", 2020, false, 310);
 
-        ArrayList<Title> movAndSeries = new ArrayList<>();
+        List<Title> movAndSeries = new ArrayList<>();
         movAndSeries.add(myMovie);
         movAndSeries.add(myMovie1);
         movAndSeries.add(movieRings);
@@ -32,7 +34,7 @@ public class PrincipalList {
             }
         }
 
-        ArrayList <String> artistList=new ArrayList<>();
+        ArrayList<String> artistList = new ArrayList<>();
         artistList.add("Axel Rose");
         artistList.add("Max Verstapend");
         artistList.add("Checo Perez");
@@ -43,6 +45,9 @@ public class PrincipalList {
         Collections.sort(movAndSeries);
 
         System.out.println("Movies list" + movAndSeries);
+
+        movAndSeries.sort(Comparator.comparing(Title::getReleaseDate));
+        System.out.println("List date: " + movAndSeries);
 
     }
 
