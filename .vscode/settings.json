@@ -1,7 +1,23 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src",
+        "lib"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+        
+        "c:\\Users\\kerpa\\Downloads\\gson-2.11.0.jar"
+    ],
+    "include": [
+        "library/**/*.jar",
+        "/home/username/lib/foo.jar"
+    ],
+    "exclude": [
+        "library/sources/**"
+    ],
+    "terminal.integrated.tabs.defaultIcon": "package",
+    "java.project.explorer.showNonJavaResources": false
+
+
 }
+
