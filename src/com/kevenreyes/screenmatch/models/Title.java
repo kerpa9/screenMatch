@@ -1,6 +1,8 @@
 package com.kevenreyes.screenmatch.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.kevenreyes.screenmatch.DTOS.TitleOmdbDTO;
+import com.kevenreyes.screenmatch.exceptions.ErrorIntDuring;
 
 public class Title implements Comparable<Title> {
 
@@ -12,6 +14,19 @@ public class Title implements Comparable<Title> {
     private double sumEvaluations;
     private int totalEvaluations;
     private int durationInMinutes;
+
+    public Title(TitleOmdbDTO myTitleOmdbDTO) {
+        this.name = myTitleOmdbDTO.title();
+        this.releaseDate = Integer.valueOf(myTitleOmdbDTO.year());
+
+
+        if (myTitleOmdbDTO.runtime().contains("N/A")) {
+            throw new ErrorIntDuring("Something went very through");
+
+        }
+        this.durationInMinutes = Integer.valueOf(myTitleOmdbDTO.runtime().substring(0, 3).replace(" ", ""));
+
+    }
 
     public Title(String name, int releaseDate, boolean includedInPlan,
             int durationInMinutes) {
@@ -97,7 +112,7 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return "nombre: " + name + ", Release date" + releaseDate;
+        return "nombre: " + name + ", Release date:" + releaseDate + "duration" + durationInMinutes;
     }
 
 }
