@@ -6,9 +6,7 @@ import com.kevenreyes.screenmatch.exceptions.ErrorIntDuring;
 
 public class Title implements Comparable<Title> {
 
-    @SerializedName("Title")
     private String name;
-    @SerializedName("Year")
     private int releaseDate;
     private boolean includedInPlan;
     private double sumEvaluations;
@@ -112,7 +110,7 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return "nombre: " + name + ", Release date: " + releaseDate + ", duration: " + durationInMinutes;
+        return "(Name movie: " + name + ", Release date: " + releaseDate + ", Duration: " + durationInMinutes+")";
     }
 
 }

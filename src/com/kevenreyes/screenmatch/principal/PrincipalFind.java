@@ -6,11 +6,15 @@ import com.kevenreyes.screenmatch.models.Title;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PrincipalFind {
@@ -18,61 +22,88 @@ public class PrincipalFind {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("-------------------------------MOVIES---------------------------");
-        System.out.println("Find's yours favorites movies");
+        List<Title> movies = new ArrayList<>();
 
-        var find = scanner.nextLine();
-        try {
+        
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).setPrettyPrinting().create();
 
-            // Http Request
+        while (true) {
 
-            String address = "https://www.omdbapi.com/?apikey=e2a21826&t=" + find.replace(" ", "+");
+            System.out.println("-------------------------------MOVIES---------------------------");
+            System.out.println("Find's yours favorites movies");
 
-            HttpClient client = HttpClient.newHttpClient();
+            var find = scanner.nextLine();
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(address))
-                    .build();
+            if (find.equalsIgnoreCase("salir")) {
+                break;
+            }
 
-            // Http Response
-            
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            try {
 
-            System.out.println("-----------------Response-------------------");
+                // Http Request
 
-            // System.out.println(json);
+                String address = "https://www.omdbapi.com/?apikey=e2a21826&t=" + find.replace(" ", "+");
 
-            // Use library GSON
-            String json = response.body();
+                HttpClient client = HttpClient.newHttpClient();
 
-            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(address))
+                        .build();
 
-            TitleOmdbDTO myTitleOmdb = gson.fromJson(json, TitleOmdbDTO.class);
+                // Http Response
 
-            // System.out.println("My tiltle: " + myTitle.getName());
-            // System.out.println("Release: " + myTitle.getReleaseDate());
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            //Response converter from Gson
-            // System.out.println(myTitleOmdb);
+                System.out.println("-----------------Response-------------------");
 
-            Title myTitle = new Title(myTitleOmdb);
-            
-            System.out.println("Title: " + myTitle);
-        } catch (NumberFormatException e) {
-            System.out.println("Throw Error");
-            System.out.println(e.getMessage());
+                // System.out.println(json);
 
-        } catch (IllegalArgumentException e) {
-            System.out.println("Throw Error");
-            System.out.println(e.getMessage());
+                // Use library GSON
+                String json = response.body();
 
-        } catch (ErrorIntDuring e) {
-            System.out.println(e.getMessage());
 
-        } finally {
-            System.out.println("End program");
+                TitleOmdbDTO myTitleOmdb = gson.fromJson(json, TitleOmdbDTO.class);
+
+                // System.out.println("My tiltle: " + myTitle.getName());
+                // System.out.println("Release: " + myTitle.getReleaseDate());
+
+                // Response converter from Gson
+                // System.out.println(myTitleOmdb);
+
+                Title myTitle = new Title(myTitleOmdb);
+
+                System.out.println("Title: " + myTitle);
+
+                movies.add(myTitle);
+
+                // FileWriter
+                // FileWriter writer = new FileWriter("movies.txt");
+                // writer.write(myTitle.toString());
+
+                // // Close writer
+                // writer.close();
+
+            } catch (NumberFormatException e) {
+                System.out.println("Throw Error");
+                System.out.println(e.getMessage());
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Throw Error");
+                System.out.println(e.getMessage());
+
+            } catch (ErrorIntDuring e) {
+                System.out.println(e.getMessage());
+
+            } finally {
+                System.out.println("End program");
+            }
+
         }
-        // Gson
+        
+        FileWriter writer=new FileWriter("movies.json");
+        writer.write(gson.toJson(movies));
+        writer.close();
+        System.out.println(movies);
     }
 
 }

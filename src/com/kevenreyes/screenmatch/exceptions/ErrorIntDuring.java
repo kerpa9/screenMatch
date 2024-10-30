@@ -4,8 +4,8 @@ public class ErrorIntDuring extends RuntimeException {
 
     private String message;
 
-    public ErrorIntDuring(String message){
-        this.message=message;
+    public ErrorIntDuring(String message) {
+        this.message = message;
     }
 
     @Override
