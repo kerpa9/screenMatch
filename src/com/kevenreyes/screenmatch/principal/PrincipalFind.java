@@ -11,6 +11,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kevenreyes.screenmatch.DTOS.TitleOmdbDTO;
+import com.kevenreyes.screenmatch.exceptions.ErrorIntDuring;
 import com.kevenreyes.screenmatch.models.Title;
 
 public class PrincipalFind {
@@ -59,8 +60,8 @@ public class PrincipalFind {
             System.out.println("Throw Error");
             System.out.println(e.getMessage());
 
-        } catch (Exception e) {
-            System.out.println("Something went vert through");
+        } catch (ErrorIntDuring e) {
+            System.out.println(e.getMessage());
 
         } finally {
             System.out.println("End program");

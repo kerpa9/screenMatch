@@ -21,7 +21,7 @@ public class Title implements Comparable<Title> {
 
 
         if (myTitleOmdbDTO.runtime().contains("N/A")) {
-            throw new ErrorIntDuring("Something went very through");
+            throw new ErrorIntDuring("Something through");
 
         }
         this.durationInMinutes = Integer.valueOf(myTitleOmdbDTO.runtime().substring(0, 3).replace(" ", ""));
